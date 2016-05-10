@@ -1,6 +1,6 @@
 {% set twigtpl = template and template == 'terms' ? 'terms' : 'pages' %}
 
-{% extends "Layouts/Extends/" ~ twigtpl ~ ".html.twig" %}
+{% extends "@template/Layouts/Extends/" ~ twigtpl ~ ".html.twig" %}
 
 {% block id %}{{ id }}_link{% endblock %}
 {% block label %}<label for="{{ id }}">{{ title|raw }}</label>{% endblock %}
@@ -116,7 +116,7 @@
 {% block footer %}
     {% if expandable %}
         <script type="text/x-handlebars-template" id="i-links-{{ id }}">
-            {% include 'expand.html.twig' with {
+            {% include '@linkField/expand.html.twig' with {
                 't_website_address': t_website_address,
                 't_website_placeholder': t_website_placeholder,
                 't_goto': t_goto,
