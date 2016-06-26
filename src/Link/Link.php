@@ -20,22 +20,21 @@ use GetOlympus\Hera\Translate\Controller\Translate;
 class Link extends Field
 {
     /**
-     * @var string
+     * Prepare variables.
      */
-    protected $faIcon = 'fa-link';
-
-    /**
-     * @var string
-     */
-    protected $template = 'link.html.twig';
+    protected function setVars()
+    {
+        $this->getModel()->setFaIcon('fa-link');
+        $this->getModel()->setScript('js'.S.'link.js');
+        $this->getModel()->setStyle('css'.S.'link.css');
+        $this->getModel()->setTemplate('link.html.twig');
+    }
 
     /**
      * Prepare HTML component.
      *
      * @param array $content
      * @param array $details
-     *
-     * @since 0.0.1
      */
     protected function getVars($content, $details = [])
     {
@@ -46,11 +45,6 @@ class Link extends Field
             'default' => [],
             'description' => '',
             'expandable' => false,
-
-            // details
-            'post' => 0,
-            'prefix' => '',
-            'template' => 'pages',
 
             // texts
             't_add_link' => Translate::t('link.add_link', [], 'linkfield'),
@@ -72,10 +66,10 @@ class Link extends Field
         $vars = array_merge($defaults, $content);
 
         // Retrieve field value
-        $vars['val'] = $this->getValue($details, $vars['default'], $content['id'], true);
+        $vars['val'] = $this->getValue($content['id'], $details, $vars['default']);
         $vars['val'] = is_array($vars['val']) ? $vars['val'] : [$template['val']];
 
         // Update vars
-        $this->getField()->setVars($vars);
+        $this->getModel()->setVars($vars);
     }
 }

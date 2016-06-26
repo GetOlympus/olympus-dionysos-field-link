@@ -1,12 +1,10 @@
-{% set twigtpl = template and template == 'terms' ? 'terms' : 'pages' %}
-
-{% extends "@template/Layouts/Extends/" ~ twigtpl ~ ".html.twig" %}
+{% extends template_path %}
 
 {% block id %}{{ id }}_link{% endblock %}
 {% block label %}<label for="{{ id }}">{{ title|raw }}</label>{% endblock %}
 
 {% block field %}
-    <div class="olz-field-content link" data-id="{{ id }}">
+    <div class="olh-field-content link" data-id="{{ id }}">
         <input type="hidden" name="{{ id }}" value="" />
         {% set num = 1 %}
 
@@ -22,7 +20,7 @@
                     <p class="block-link">
                         <label for="{{ idexp }}-url">{{ t_website_address }}</label>
                         <input type="text" name="{{ idexp }}[url]" id="{{ idexp }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
-                        <a href="{{ v.url }}" class="olz-tooltip" title="{{ t_website_goto|raw }}" target="_blank">
+                        <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_website_goto|raw }}" target="_blank">
                             <i class="fa fa-external-link"></i>
                         </a>
                     </p>
@@ -36,16 +34,16 @@
                         <label for="{{ idexp }}-target">{{ t_target|raw }}</label>
                         <select name="{{ idexp }}[target]" id="{{ idexp }}-target" class="no-selectize">
                             <option value="_blank"{{ v.target == '_blank' ? ' selected="selected"' : '' }}>
-                                {{ t_target_blank|raw }}
+                                _blank :: {{ t_target_blank|raw }}
                             </option>
                             <option value="_self"{{ v.target == '_self' ? ' selected="selected"' : '' }}>
-                                {{ t_target_self|raw }}
+                                _self :: {{ t_target_self|raw }}
                             </option>
                             <option value="_parent"{{ v.target == '_parent' ? ' selected="selected"' : '' }}>
-                                {{ t_target_parent|raw }}
+                                _parent :: {{ t_target_parent|raw }}
                             </option>
                             <option value="_top"{{ v.target == '_top' ? ' selected="selected"' : '' }}>
-                                {{ t_target_top|raw }}
+                                _top :: {{ t_target_top|raw }}
                             </option>
                         </select>
                     </p>
@@ -65,7 +63,7 @@
                     <p class="block-link">
                         <label for="{{ id }}-url">{{ t_website_address }}</label>
                         <input type="text" name="{{ id }}[url]" id="{{ id }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
-                        <a href="{{ v.url }}" class="olz-tooltip" title="{{ t_goto|raw }}" target="_blank"><i class="fa fa-external-link"></i></a>
+                        <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank"><i class="fa fa-external-link"></i></a>
                     </p>
 
                     <p>
@@ -108,15 +106,13 @@
                 <a href="#deleteLinks" class="del-all-links">{{ t_delete_all|raw }}</a>
             </div>
         {% endif %}
-
-        {% if description %}<p class="olz-description">{{ description|raw }}</p>{% endif %}
     </div>
 {% endblock %}
 
 {% block footer %}
     {% if expandable %}
         <script type="text/x-handlebars-template" id="i-links-{{ id }}">
-            {% include '@linkField/expand.html.twig' with {
+            {% include '@link/expand.html.twig' with {
                 't_website_address': t_website_address,
                 't_website_placeholder': t_website_placeholder,
                 't_goto': t_goto,
@@ -131,4 +127,8 @@
             } only %}
         </script>
     {% endif %}
+{% endblock %}
+
+{% block description %}
+    {{ description|raw }}
 {% endblock %}
