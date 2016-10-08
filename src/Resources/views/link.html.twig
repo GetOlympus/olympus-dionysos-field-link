@@ -5,12 +5,12 @@
 
 {% block field %}
     <div class="olh-field-content link" data-id="{{ id }}">
-        <input type="hidden" name="{{ id }}" value="" />
+        <input type="hidden" name="{{ name }}" value="" />
         {% set num = 1 %}
 
         <fieldset{{ expandable ? ' class="expandable"' : '' }}>
             {% for k, v in val %}
-                {% set idexp = expandable ? id ~ '[' ~ num ~ ']' : id %}
+                {% set idexp = expandable ? name ~ '[' ~ num ~ ']' : name %}
 
                 <div class="link-container{{ expandable ? ' movendrop' : '' }}">
                     {% if expandable %}
@@ -62,18 +62,18 @@
                 <div class="link-container">
                     <p class="block-link">
                         <label for="{{ id }}-url">{{ t_website_address }}</label>
-                        <input type="text" name="{{ id }}[url]" id="{{ id }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
+                        <input type="text" name="{{ name }}[url]" id="{{ id }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
                         <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank"><i class="fa fa-external-link"></i></a>
                     </p>
 
                     <p>
                         <label for="{{ id }}-label">{{ t_title|raw }}</label>
-                        <input type="text" name="{{ id }}[label]" id="{{ id }}-label" value="{{ v.label }}" />
+                        <input type="text" name="{{ name }}[label]" id="{{ id }}-label" value="{{ v.label }}" />
                     </p>
 
                     <p>
                         <label for="{{ id }}-target">{{ t_target|raw }}</label>
-                        <select name="{{ id }}[target]" id="{{ id }}-target" class="no-selectize">
+                        <select name="{{ name }}[target]" id="{{ id }}-target" class="no-selectize">
                             <option value="_blank"{{ v.target == '_blank' ? ' selected="selected"' : '' }}>
                                 {{ t_target_blank|raw }}
                             </option>
@@ -91,7 +91,7 @@
 
                     <p class="rel">
                         <label for="{{ id }}-rel">{{ t_relationship|raw }}</label>
-                        <input type="text" name="{{ id }}[rel]" id="{{ id }}-rel" value="{{ v.rel }}" />
+                        <input type="text" name="{{ name }}[rel]" id="{{ id }}-rel" value="{{ v.rel }}" />
                         <small>{{ t_relationship_description|raw }}</small>
                     </p>
                 </div>
