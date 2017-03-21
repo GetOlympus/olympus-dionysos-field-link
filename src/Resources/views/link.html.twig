@@ -8,82 +8,91 @@
         <input type="hidden" name="{{ name }}" value="" />
         {% set num = 1 %}
 
-        <fieldset{{ expandable ? ' class="expandable"' : '' }}>
-            {% for k, v in val %}
-                {% set idexp = expandable ? name ~ '[' ~ num ~ ']' : name %}
+        {% if expandable %}
+            <fieldset class="expandable">
+                {% for k, v in val %}
+                    {% set idexp = expandable ? name ~ '[' ~ num ~ ']' : name %}
 
-                <div class="link-container{{ expandable ? ' movendrop' : '' }}">
-                    {% if expandable %}
-                        <a href="#deleteLink" class="del-link"><i class="fa fa-times"></i></a>
-                    {% endif %}
+                    <div class="link-container movendrop">
+                        {% if expandable %}
+                            <a href="#deleteLink" class="del-link"><i class="fa fa-times"></i></a>
+                        {% endif %}
 
-                    <p class="block-link">
-                        <label for="{{ idexp }}-url">{{ t_website_address }}</label>
-                        <input type="text" name="{{ idexp }}[url]" id="{{ idexp }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
-                        <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_website_goto|raw }}" target="_blank">
-                            <i class="fa fa-external-link"></i>
-                        </a>
-                    </p>
+                        <p class="block-link">
+                            <label for="{{ idexp }}-url">{{ t_website_address }}</label>
+                            <input type="text" name="{{ idexp }}[url]" id="{{ idexp }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
+                            <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_website_goto|raw }}" target="_blank">
+                                <i class="fa fa-external-link"></i>
+                            </a>
+                        </p>
 
-                    <p>
-                        <label for="{{ idexp }}-label">{{ t_website|raw }}</label>
-                        <input type="text" name="{{ idexp }}[label]" id="{{ idexp }}-label" value="{{ v.label }}" />
-                    </p>
+                        <p>
+                            <label for="{{ idexp }}-label">{{ t_website|raw }}</label>
+                            <input type="text" name="{{ idexp }}[label]" id="{{ idexp }}-label" value="{{ v.label }}" />
+                        </p>
 
-                    <p>
-                        <label for="{{ idexp }}-target">{{ t_target|raw }}</label>
-                        <select name="{{ idexp }}[target]" id="{{ idexp }}-target" class="no-selectize">
-                            <option value="_blank"{{ v.target == '_blank' ? ' selected="selected"' : '' }}>
-                                _blank :: {{ t_target_blank|raw }}
-                            </option>
-                            <option value="_self"{{ v.target == '_self' ? ' selected="selected"' : '' }}>
-                                _self :: {{ t_target_self|raw }}
-                            </option>
-                            <option value="_parent"{{ v.target == '_parent' ? ' selected="selected"' : '' }}>
-                                _parent :: {{ t_target_parent|raw }}
-                            </option>
-                            <option value="_top"{{ v.target == '_top' ? ' selected="selected"' : '' }}>
-                                _top :: {{ t_target_top|raw }}
-                            </option>
-                        </select>
-                    </p>
+                        <p>
+                            <label for="{{ idexp }}-target">{{ t_target|raw }}</label>
+                            <select name="{{ idexp }}[target]" id="{{ idexp }}-target" class="no-selectize">
+                                <option value="_blank"{{ v.target == '_blank' ? ' selected="selected"' : '' }}>
+                                    _blank :: {{ t_target_blank|raw }}
+                                </option>
+                                <option value="_self"{{ v.target == '_self' ? ' selected="selected"' : '' }}>
+                                    _self :: {{ t_target_self|raw }}
+                                </option>
+                                <option value="_parent"{{ v.target == '_parent' ? ' selected="selected"' : '' }}>
+                                    _parent :: {{ t_target_parent|raw }}
+                                </option>
+                                <option value="_top"{{ v.target == '_top' ? ' selected="selected"' : '' }}>
+                                    _top :: {{ t_target_top|raw }}
+                                </option>
+                            </select>
+                        </p>
 
-                    <p class="rel">
-                        <label for="{{ idexp }}-rel">{{ t_relationship|raw }}</label>
-                        <input type="text" name="{{ idexp }}[rel]" id="{{ idexp }}-rel" value="{{ v.rel }}" />
-                        <small>{{ t_relationship_description|raw }}</small>
-                    </p>
-                </div>
+                        <p class="rel">
+                            <label for="{{ idexp }}-rel">{{ t_relationship|raw }}</label>
+                            <input type="text" name="{{ idexp }}[rel]" id="{{ idexp }}-rel" value="{{ v.rel }}" />
+                            <small>{{ t_relationship_description|raw }}</small>
+                        </p>
+                    </div>
 
-                {% set num = num + 1 %}
-            {% endfor %}
+                    {% set num = num + 1 %}
+                {% endfor %}
+            </fieldset>
 
-            {% if not expandable and not val %}
+            <div class="hide-if-no-js">
+                <a href="#addLink" class="button add-link" title="{{ t_add_link }}">
+                    <i class="fa fa-link fa-lg"></i> {{ t_add_link }}
+                </a>
+                <a href="#deleteLinks" class="del-all-links">{{ t_delete_all|raw }}</a>
+            </div>
+        {% else %}
+            <fieldset>
                 <div class="link-container">
                     <p class="block-link">
                         <label for="{{ id }}-url">{{ t_website_address }}</label>
-                        <input type="text" name="{{ name }}[url]" id="{{ id }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
-                        <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank"><i class="fa fa-external-link"></i></a>
+                        <input type="text" name="{{ name }}[url]" id="{{ id }}-url" value="{{ val.url }}" placeholder="{{ t_website_placeholder|raw }}" />
+                        <a href="{{ val.url }}" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank"><i class="fa fa-external-link"></i></a>
                     </p>
 
                     <p>
                         <label for="{{ id }}-label">{{ t_title|raw }}</label>
-                        <input type="text" name="{{ name }}[label]" id="{{ id }}-label" value="{{ v.label }}" />
+                        <input type="text" name="{{ name }}[label]" id="{{ id }}-label" value="{{ val.label }}" />
                     </p>
 
                     <p>
-                        <label for="{{ id }}-target">{{ t_target|raw }}</label>
+                        <label for="{{ id }}-target">{{ t_website|raw }}</label>
                         <select name="{{ name }}[target]" id="{{ id }}-target" class="no-selectize">
-                            <option value="_blank"{{ v.target == '_blank' ? ' selected="selected"' : '' }}>
+                            <option value="_blank"{{ val.target == '_blank' ? ' selected="selected"' : '' }}>
                                 {{ t_target_blank|raw }}
                             </option>
-                            <option value="_self"{{ v.target == '_self' ? ' selected="selected"' : '' }}>
+                            <option value="_self"{{ val.target == '_self' ? ' selected="selected"' : '' }}>
                                 {{ t_target_self|raw }}
                             </option>
-                            <option value="_parent"{{ v.target == '_parent' ? ' selected="selected"' : '' }}>
+                            <option value="_parent"{{ val.target == '_parent' ? ' selected="selected"' : '' }}>
                                 {{ t_target_parent|raw }}
                             </option>
-                            <option value="_top"{{ v.target == '_top' ? ' selected="selected"' : '' }}>
+                            <option value="_top"{{ val.target == '_top' ? ' selected="selected"' : '' }}>
                                 {{ t_target_top|raw }}
                             </option>
                         </select>
@@ -91,20 +100,11 @@
 
                     <p class="rel">
                         <label for="{{ id }}-rel">{{ t_relationship|raw }}</label>
-                        <input type="text" name="{{ name }}[rel]" id="{{ id }}-rel" value="{{ v.rel }}" />
+                        <input type="text" name="{{ name }}[rel]" id="{{ id }}-rel" value="{{ val.rel }}" />
                         <small>{{ t_relationship_description|raw }}</small>
                     </p>
                 </div>
-            {% endif %}
-        </fieldset>
-
-        {% if expandable %}
-            <div class="hide-if-no-js">
-                <a href="#addLink" class="button add-link" title="{{ t_add_link }}">
-                    <i class="fa fa-link fa-lg"></i> {{ t_add_link }}
-                </a>
-                <a href="#deleteLinks" class="del-all-links">{{ t_delete_all|raw }}</a>
-            </div>
+            </fieldset>
         {% endif %}
     </div>
 {% endblock %}
