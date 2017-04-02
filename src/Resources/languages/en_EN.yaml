@@ -3,6 +3,9 @@ link:
   title: Link
   add_link: Add link
   delete_all: Delete all links
+  label:
+    title: Label
+    placeholder: Put your link label here.
   relationship:
     title: Relationship
     description: "You can set the <code>nofollow</code> value to avoid bots following the linked document."

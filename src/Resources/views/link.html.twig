@@ -19,7 +19,7 @@
                         {% endif %}
 
                         <p class="block-link">
-                            <label for="{{ idexp }}-url">{{ t_website_address }}</label>
+                            <label for="{{ idexp }}-url">{{ t_website_address|raw }}</label>
                             <input type="text" name="{{ idexp }}[url]" id="{{ idexp }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
                             <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_website_goto|raw }}" target="_blank">
                                 <i class="fa fa-external-link"></i>
@@ -27,8 +27,8 @@
                         </p>
 
                         <p>
-                            <label for="{{ idexp }}-label">{{ t_website|raw }}</label>
-                            <input type="text" name="{{ idexp }}[label]" id="{{ idexp }}-label" value="{{ v.label }}" />
+                            <label for="{{ idexp }}-label">{{ t_label|raw }}</label>
+                            <input type="text" name="{{ idexp }}[label]" id="{{ idexp }}-label" value="{{ v.label }}" placeholder="{{ t_label_placeholder|raw }}" />
                         </p>
 
                         <p>
@@ -70,14 +70,14 @@
             <fieldset>
                 <div class="link-container">
                     <p class="block-link">
-                        <label for="{{ id }}-url">{{ t_website_address }}</label>
+                        <label for="{{ id }}-url">{{ t_website_address|raw }}</label>
                         <input type="text" name="{{ name }}[url]" id="{{ id }}-url" value="{{ val.url }}" placeholder="{{ t_website_placeholder|raw }}" />
                         <a href="{{ val.url }}" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank"><i class="fa fa-external-link"></i></a>
                     </p>
 
                     <p>
-                        <label for="{{ id }}-label">{{ t_title|raw }}</label>
-                        <input type="text" name="{{ name }}[label]" id="{{ id }}-label" value="{{ val.label }}" />
+                        <label for="{{ id }}-label">{{ t_label|raw }}</label>
+                        <input type="text" name="{{ name }}[label]" id="{{ id }}-label" value="{{ val.label }}" placeholder="{{ t_label_placeholder|raw }}" />
                     </p>
 
                     <p>
@@ -116,7 +116,8 @@
                 't_website_address': t_website_address,
                 't_website_placeholder': t_website_placeholder,
                 't_goto': t_goto,
-                't_title': t_title,
+                't_label': t_label,
+                't_label_placeholder': t_label_placeholder,
                 't_target': t_target,
                 't_target_blank': t_target_blank,
                 't_target_self': t_target_self,

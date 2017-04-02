@@ -49,6 +49,8 @@ class Link extends Field
             // texts
             't_add_link' => Translate::t('link.add_link', [], 'linkfield'),
             't_delete_all' => Translate::t('link.delete_all', [], 'linkfield'),
+            't_label' => Translate::t('link.label.title', [], 'linkfield'),
+            't_label_placeholder' => Translate::t('link.label.placeholder', [], 'linkfield'),
             't_relationship' => Translate::t('link.relationship.title', [], 'linkfield'),
             't_relationship_description' => Translate::t('link.relationship.description', [], 'linkfield'),
             't_target' => Translate::t('link.target.title', [], 'linkfield'),

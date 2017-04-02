@@ -10,8 +10,8 @@
     </p>
 
     <p>
-        <label for="{% verbatim %}{{ lfor }}{% endverbatim %}-label">{{ t_title|raw }}</label>
-        <input type="text" name="{% verbatim %}{{ id }}{% endverbatim %}[{% verbatim %}{{ num }}{% endverbatim %}][label]" id="{% verbatim %}{{ lfor }}{% endverbatim %}-label" value="" />
+        <label for="{% verbatim %}{{ lfor }}{% endverbatim %}-label">{{ t_label|raw }}</label>
+        <input type="text" name="{% verbatim %}{{ id }}{% endverbatim %}[{% verbatim %}{{ num }}{% endverbatim %}][label]" id="{% verbatim %}{{ lfor }}{% endverbatim %}-label" value="" placeholder="{{ t_label_placeholder|raw }}" />
     </p>
 
     <p>
