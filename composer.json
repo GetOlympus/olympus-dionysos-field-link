@@ -1,8 +1,8 @@
 {
   "name": "getolympus/olympus-link-field",
   "type": "olympus-field",
-  "description": "[READ-ONLY] Link field, this component is a part of the Olympus Hera WordPress library.",
-  "keywords": ["olympus", "hera", "field", "link", "framework", "php"],
+  "description": "[READ-ONLY] Link field, this component is a part of the Olympus Zeus Core framework.",
+  "keywords": ["olympus", "zeus", "field", "link", "framework", "php"],
   "homepage": "https://github.com/GetOlympus/olympus-link-field",
   "license": "MIT",
   "authors": [
@@ -23,7 +23,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "getolympus/olympus-hera": "~0.0.1",
+    "getolympus/olympus-zeus-core": "~0.0.1",
     "twig/twig": "~1.0"
   },
   "require-dev": {
