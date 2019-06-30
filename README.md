@@ -2,8 +2,6 @@
 
 _This component is a part of the [**Olympus Zeus Core**](https://github.com/GetOlympus/Zeus-Core) **WordPress** framework._  
 
-![Thumbnail](https://www.filepicker.io/api/file/gYnAEeJeSgWmPtH5uTt9)
-
 ---
 
 ### Resources
