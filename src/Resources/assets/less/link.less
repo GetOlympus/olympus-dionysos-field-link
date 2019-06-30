@@ -5,61 +5,58 @@
  * Achraf Chouk (https://github.com/crewstyle)
  */
 
-@gray: #999999;
 @black: #000000;
-@danger: #e74c3c;
+@gray: #999999;
+@white: #ffffff;
 
-.olh-field-content.link {
-    fieldset {
-        &.expandable {
-            border-bottom: 1px solid lighten(@gray, 20%);
-            margin-bottom: 15px;
-        }
+.olz-field.link {
+    .l-results {
+        font-size: 0;
     }
 
-    .link-container {
+    fieldset {
+        background-color: @white;
+        box-shadow: 0 2px 2px 0 fade(@black, 30%);
+        box-sizing: border-box;
+        display: inline-block;
+        font-size: 12px;
+        margin: 0 .5% 10px;
+        min-width: 450px;
+        padding: 10px;
         position: relative;
+        vertical-align: top;
+        width: 49%;
+    }
 
-        &.movendrop {
-            border-bottom: 1px solid lighten(@gray, 20%);
-            margin: 20px 0;
-            padding: 2px 0 20px;
+    label {
+        display: inline-block;
+        font-size: 12px;
+        line-height: 12px;
+        width: 80px;
+    }
 
-            &:last-child {
-                border-bottom: none;
-                margin-bottom: 0;
-            }
-        }
+    select,
+    input {
+        line-height: 18px;
+    }
 
-        .block-link {
-            font-size: 0;
+    small {
+        display: block;
+        font-style: italic;
 
-            a {
-                background-color: fade(@gray, 10%);
-                border: 1px solid lighten(@gray, 20%);
-                border-radius: 0 10px 10px 0;
-                display: inline-block;
-                font-size: 14px;
-                line-height: 28px;
-                margin: 1px 1px 1px -2px;
-                padding: 0 10px;
-                text-decoration: none;
-                vertical-align: top;
-            }
-        }
-
-        p {
-            clear: both;
+        code {
+            font-size: inherit;
         }
     }
 
     a.del-link {
+        background-color: @white;
         color: @black;
         display: block;
-        font-size: 12px;
+        font-size: 16px;
         font-weight: 700;
-        height: 20px;
-        line-height: 20px;
+        height: 30px;
+        line-height: 30px;
         padding: 4px 8px;
         position: absolute;
         right: 0;
@@ -67,44 +64,5 @@
         text-decoration: none;
         top: 0;
         z-index: 4;
-    }
-
-    a.del-all-links {
-        color: darken(@danger, 10%);
-        font-size: 12px;
-        line-height: 26px;
-        margin-left: 20px;
-
-        &:focus,
-        &:hover {
-            color: @danger;
-        }
-    }
-
-    label {
-        display: block;
-        float: left;
-        font-size: 14px;
-        line-height: 28px;
-        padding: 0 10px 0 0;
-        text-align: right;
-        width: 100px;
-    }
-
-    select,
-    input {
-        font-size: 14px;
-        line-height: 22px;
-        width: 400px;
-    }
-
-    .rel input {
-        width: 150px;
-    }
-
-    small {
-        display: block;
-        font-style: italic;
-        margin-left: 110px;
     }
 }

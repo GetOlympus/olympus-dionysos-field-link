@@ -1,0 +1,6 @@
+/*!
+ * link.less
+ *
+ * Copyright 2016 Achraf Chouk
+ * Achraf Chouk (https://github.com/crewstyle)
+ */.olz-field.link .l-results{font-size:0}.olz-field.link fieldset{background-color:#fff;box-shadow:0 2px 2px 0 rgba(0,0,0,.3);box-sizing:border-box;display:inline-block;font-size:12px;margin:0 .5% 10px;min-width:450px;padding:10px;position:relative;vertical-align:top;width:49%}.olz-field.link label{display:inline-block;font-size:12px;line-height:12px;width:80px}.olz-field.link input,.olz-field.link select{line-height:18px}.olz-field.link small{display:block;font-style:italic}.olz-field.link small code{font-size:inherit}.olz-field.link a.del-link{background-color:#fff;color:#000;display:block;font-size:16px;font-weight:700;height:30px;line-height:30px;padding:4px 8px;position:absolute;right:0;text-align:center;text-decoration:none;top:0;z-index:4}

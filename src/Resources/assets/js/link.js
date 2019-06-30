@@ -1,16 +1,16 @@
 /*!
  * link.js v2.0.0
- * https://github.com/crewstyle/OlympusZeus
+ * https://github.com/GetOlympus/olympus-link-field
  *
  * This plugin change dynamically the href attribute for the link URL.
  *
  * Example of JS:
- *      $('input[type="url"]').olLink({
+ *      $('input[type="url"]').zeusLink({
  *          addbutton: '.add-link',                     //add link button
  *          color: '#ffaaaa',                           //background color used when deleting a social network
  *          container: 'fieldset',                      //node element containing all items
- *          delallbutton: 'a.del-all-links',            //delete all links button
- *          delbutton: 'a.del-link',                    //delete link button
+ *          delallbutton: '.del-all-links',             //delete all links button
+ *          delbutton: '.del-link',                     //delete link button
  *          items: '.link-container',                   //node element which is used to count all elements
  *          linkbutton: 'input',                        //link button to make url clickable
  *          source: '#template-id'                      //node script element in DOM containing handlebars JS temlpate
@@ -32,100 +32,86 @@
 (function ($){
     "use strict";
 
-    var OlLink = function ($el,options){
+    var Link = function ($el,options){
         //vars
-        var _ol = this;
-        _ol.$el = $el;
-        _ol.id = $el.attr('data-id');
-        _ol.options = options;
+        var _this = this;
+        _this.$el = $el;
+        _this.id = $el.attr('data-id');
+        _this.options = options;
 
         //update container
-        _ol.$container = _ol.$el.find(_ol.options.container);
+        _this.$container = _this.$el.find(_this.options.container);
 
         //update number
-        _ol.num = _ol.$container.find(_ol.options.items).length + 1;
-
-        //set the template
-        _ol.source = $(_ol.options.source).html();
+        _this.num = _this.$container.find(_this.options.items).length;
 
         //bind click event
-        _ol.$el.find(_ol.options.linkbutton).on('keyup', $.proxy(_ol.linketize, _ol));
-        _ol.$el.find(_ol.options.addbutton).on('click', $.proxy(_ol.add_block, _ol));
-        _ol.$el.find(_ol.options.delbutton).on('click', $.proxy(_ol.remove_block, _ol));
-        _ol.$el.find(_ol.options.delallbutton).on('click', $.proxy(_ol.remove_all, _ol));
+        _this.$el.find(_this.options.linkbutton).on('keyup', $.proxy(_this.linketize, _this));
+        _this.$el.find(_this.options.addbutton).on('click', $.proxy(_this.add_block, _this));
+        _this.$el.find(_this.options.delbutton).on('click', $.proxy(_this.remove_block, _this));
+        _this.$el.find(_this.options.delallbutton).on('click', $.proxy(_this.remove_all, _this));
     };
 
-    OlLink.prototype.$el = null;
-    OlLink.prototype.$container = null;
-    OlLink.prototype.id = null;
-    OlLink.prototype.options = null;
-    OlLink.prototype.num = 0;
-    OlLink.prototype.source = null;
+    Link.prototype.$el = null;
+    Link.prototype.$container = null;
+    Link.prototype.id = null;
+    Link.prototype.options = null;
+    Link.prototype.num = 0;
 
-    OlLink.prototype.linketize = function (e){
+    Link.prototype.linketize = function (e){
         e.preventDefault();
-        var _ol = this;
+        var _this = this;
 
         //vars
         var $self = $(e.target || e.currentTarget);
 
         //change href attribute
-        $self.next('a').attr('href', $self.val());
+        _this.$el.find(_this.options.gotobutton).attr('href', $self.val());
     };
 
-    OlLink.prototype.add_block = function (e){
+    Link.prototype.add_block = function (e){
         e.preventDefault();
-        var _ol = this,
-            _id = '',
-            _name = '';
+        var _this = this;
 
         //vars
         var $self = $(e.target || e.currentTarget);
 
         //update number
-        _ol.num++;
+        _this.num++;
 
-        //build contents
-        var resp = {
-            id: _ol.id,
-            lfor: _ol.id + '_' + _ol.num,
-            num: _ol.num
-        };
-
-        //update modal content and add binding event
-        var template = Handlebars.compile(_ol.source);
-        var link = template(resp);
+        //update modal content
+        var _template = wp.template(_this.options.source),
+            $html = $(_template({
+                id: _this.num
+            }));
 
         //append all to target
-        _ol.$container.append(link);
+        _this.$container.append($html);
 
         //bind events
-        var $link = _ol.$container.find(_ol.options.items).last();
-        $link.find(_ol.options.linkbutton).on('keyup', $.proxy(_ol.linketize, _ol));
-        $link.find(_ol.options.delbutton).on('click', $.proxy(_ol.remove_block, _ol));
-
-        //Tootltip
-        $link.find('. olh-tooltip').olTooltip({position: 'right'});
+        var $link = _this.$container.find(_this.options.items).last();
+        $link.find(_this.options.linkbutton).on('keyup', $.proxy(_this.linketize, _this));
+        $link.find(_this.options.delbutton).on('click', $.proxy(_this.remove_block, _this));
     };
 
-    OlLink.prototype.remove_all = function (e){
+    Link.prototype.remove_all = function (e){
         e.preventDefault();
-        var _ol = this;
+        var _this = this;
 
         //iterate on all
-        _ol.$el.find(_ol.options.delbutton).click();
+        _this.$el.find(_this.options.delbutton).click();
     };
 
-    OlLink.prototype.remove_block = function (e){
+    Link.prototype.remove_block = function (e){
         e.preventDefault();
-        var _ol = this;
+        var _this = this;
 
         //vars
         var $self = $(e.target || e.currentTarget);
-        var $parent = $self.closest(_ol.options.items);
+        var $parent = $self.closest(_this.options.items);
 
         //deleting animation
-        $parent.css('background', _ol.options.color);
+        $parent.css('background', _this.options.color);
         $parent.animate({
             opacity: '0'
         }, 'slow', function (){
@@ -143,11 +129,12 @@
                 addbutton: '.add-link',
                 color: '#ffaaaa',
                 container: 'fieldset',
-                delallbutton: 'a.del-all-links',
-                delbutton: 'a.del-link',
+                delallbutton: '.del-all-links',
+                delbutton: '.del-link',
+                gotobutton: '.goto',
                 items: '.link-container',
                 linkbutton: '.block-link input',
-                source: '#template-id'
+                source: 'template-id'
             };
 
             return this.each(function (){
@@ -155,14 +142,14 @@
                     $.extend(settings, options);
                 }
 
-                new OlLink($(this), settings);
+                new Link($(this), settings);
             });
         },
         update: function (){},
         destroy: function (){}
     };
 
-    $.fn.olLink = function (method){
+    $.fn.zeusLink = function (method){
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         }
@@ -170,7 +157,7 @@
             return methods.init.apply(this, arguments);
         }
         else {
-            $.error('Method '+method+' does not exist on olLink');
+            $.error('Method '+method+' does not exist on zeusLink');
             return false;
         }
     };

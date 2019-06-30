@@ -20,58 +20,74 @@ use GetOlympus\Zeus\Translate\Controller\Translate;
 class Link extends Field
 {
     /**
-     * Prepare variables.
+     * @var string
      */
-    protected function setVars()
+    protected $script = 'js'.S.'link.js';
+
+    /**
+     * @var string
+     */
+    protected $style = 'css'.S.'link.css';
+
+    /**
+     * @var string
+     */
+    protected $template = 'link.html.twig';
+
+    /**
+     * @var string
+     */
+    protected $textdomain = 'linkfield';
+
+    /**
+     * Prepare defaults.
+     *
+     * @return array
+     */
+    protected function getDefaults()
     {
-        $this->getModel()->setFaIcon('fa-link');
-        $this->getModel()->setScript('js'.S.'link.js');
-        $this->getModel()->setStyle('css'.S.'link.css');
-        $this->getModel()->setTemplate('link.html.twig');
+        return [
+            'title' => Translate::t('link.title', $this->textdomain),
+            'default' => [],
+            'description' => '',
+            'multiple' => false,
+
+            // texts
+            't_add_link' => Translate::t('link.add_link', $this->textdomain),
+            't_delete_all' => Translate::t('link.delete_all', $this->textdomain),
+            't_label' => Translate::t('link.label.title', $this->textdomain),
+            't_label_placeholder' => Translate::t('link.label.placeholder', $this->textdomain),
+            't_relationship' => Translate::t('link.relationship.title', $this->textdomain),
+            't_relationship_description' => Translate::t('link.relationship.description', $this->textdomain),
+            't_target' => Translate::t('link.target.title', $this->textdomain),
+            't_target_blank' => Translate::t('link.target.blank', $this->textdomain),
+            't_target_self' => Translate::t('link.target.self', $this->textdomain),
+            't_target_parent' => Translate::t('link.target.parent', $this->textdomain),
+            't_target_top' => Translate::t('link.target.top', $this->textdomain),
+            't_website' => Translate::t('link.website.title', $this->textdomain),
+            't_website_placeholder' => Translate::t('link.website.placeholder', $this->textdomain),
+            't_website_goto' => Translate::t('link.website.goto', $this->textdomain),
+            't_website_url' => Translate::t('link.website.url', $this->textdomain),
+        ];
     }
 
     /**
-     * Prepare HTML component.
+     * Prepare variables.
      *
-     * @param array $content
-     * @param array $details
+     * @param  object  $value
+     * @param  array   $contents
+     *
+     * @return array
      */
-    protected function getVars($content, $details = [])
+    protected function getVars($value, $contents)
     {
-        // Build defaults
-        $defaults = [
-            'id' => '',
-            'title' => Translate::t('link.title', [], 'linkfield'),
-            'default' => [],
-            'description' => '',
-            'expandable' => false,
-
-            // texts
-            't_add_link' => Translate::t('link.add_link', [], 'linkfield'),
-            't_delete_all' => Translate::t('link.delete_all', [], 'linkfield'),
-            't_label' => Translate::t('link.label.title', [], 'linkfield'),
-            't_label_placeholder' => Translate::t('link.label.placeholder', [], 'linkfield'),
-            't_relationship' => Translate::t('link.relationship.title', [], 'linkfield'),
-            't_relationship_description' => Translate::t('link.relationship.description', [], 'linkfield'),
-            't_target' => Translate::t('link.target.title', [], 'linkfield'),
-            't_target_blank' => Translate::t('link.target.blank', [], 'linkfield'),
-            't_target_self' => Translate::t('link.target.self', [], 'linkfield'),
-            't_target_parent' => Translate::t('link.target.parent', [], 'linkfield'),
-            't_target_top' => Translate::t('link.target.top', [], 'linkfield'),
-            't_website' => Translate::t('link.website.title', [], 'linkfield'),
-            't_website_address' => Translate::t('link.website.address', [], 'linkfield'),
-            't_website_placeholder' => Translate::t('link.website.placeholder', [], 'linkfield'),
-            't_website_goto' => Translate::t('link.website.goto', [], 'linkfield'),
-        ];
-
-        // Build defaults data
-        $vars = array_merge($defaults, $content);
+        // Get contents
+        $vars = $contents;
 
         // Retrieve field value
-        $vars['val'] = $this->getValue($content['id'], $details, $vars['default']);
-        $vars['val'] = is_array($vars['val']) ? $vars['val'] : [$template['val']];
+        $vars['value'] = !is_array($value) ? [$value] : $value;
 
         // Update vars
-        $this->getModel()->setVars($vars);
+        return $vars;
     }
 }

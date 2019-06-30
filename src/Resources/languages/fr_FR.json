@@ -1,0 +1,22 @@
+{
+    "link.title": "Lien hypertexte",
+    "link.add_link": "Ajouter un lien",
+    "link.delete_all": "Supprimer tous les liens",
+
+    "link.label.title": "Libellé",
+    "link.label.placeholder": "Inscrivez votre libellé ici.",
+
+    "link.relationship.title": "Relation",
+    "link.relationship.description": "Vous pouvez définir la relation <code>nofollow</code> afin d'éviter que le lien ne soit suivi par les bots d'indexation.",
+
+    "link.target.title": "Cible",
+    "link.target.blank": "Nouvelle fenêtre ou nouvel onglet",
+    "link.target.self": "Même frame du lien",
+    "link.target.parent": "Frame parente",
+    "link.target.top": "Page complète de la fenêtre",
+
+    "link.website.title": "Titre",
+    "link.website.placeholder": "https:// ou http://",
+    "link.website.goto": "Voir",
+    "link.website.url": "URL du site web"
+}

@@ -1,139 +1,121 @@
 {% extends template_path %}
 
-{% block id %}{{ id }}_link{% endblock %}
-{% block label %}<label for="{{ id }}">{{ title|raw }}</label>{% endblock %}
+{% block id %}{{ identifier }}{% endblock %}
+{% block label %}<label>{{ title|raw }}</label>{% endblock %}
 
 {% block field %}
-    <div class="olh-field-content link" data-id="{{ id }}">
+    <div id="{{ identifier }}-link" class="olz-field link">
         <input type="hidden" name="{{ name }}" value="" />
-        {% set num = 1 %}
 
-        {% if expandable %}
-            <fieldset class="expandable">
-                {% for k, v in val %}
-                    {% set idexp = expandable ? name ~ '[' ~ num ~ ']' : name %}
+        <div class="l-results">
+            {% set num = 1 %}
 
-                    <div class="link-container movendrop">
-                        {% if expandable %}
-                            <a href="#deleteLink" class="del-link">
-                                <i class="dashicons dashicons-no-alt"></i>
-                            </a>
-                        {% endif %}
+            {% if value|length > 0 %}
+                {% for k, v in value %}
+                    {% include '@link/expand.html.twig' with {
+                        'fieldname': name,
+                        'multiple': multiple,
 
-                        <p class="block-link">
-                            <label for="{{ idexp }}-url">{{ t_website_address|raw }}</label>
-                            <input type="text" name="{{ idexp }}[url]" id="{{ idexp }}-url" value="{{ v.url }}" placeholder="{{ t_website_placeholder|raw }}" />
-                            <a href="{{ v.url }}" class="olh-tooltip" title="{{ t_website_goto|raw }}" target="_blank">
-                                <i class="dashicons dashicons-admin-links"></i>
-                            </a>
-                        </p>
+                        'id': num,
+                        'url': v.url,
+                        'label': v.label,
+                        'target': v.target,
+                        'rel': v.rel,
 
-                        <p>
-                            <label for="{{ idexp }}-label">{{ t_label|raw }}</label>
-                            <input type="text" name="{{ idexp }}[label]" id="{{ idexp }}-label" value="{{ v.label }}" placeholder="{{ t_label_placeholder|raw }}" />
-                        </p>
-
-                        <p>
-                            <label for="{{ idexp }}-target">{{ t_target|raw }}</label>
-                            <select name="{{ idexp }}[target]" id="{{ idexp }}-target" class="no-selectize">
-                                <option value="_blank"{{ v.target == '_blank' ? ' selected="selected"' : '' }}>
-                                    _blank :: {{ t_target_blank|raw }}
-                                </option>
-                                <option value="_self"{{ v.target == '_self' ? ' selected="selected"' : '' }}>
-                                    _self :: {{ t_target_self|raw }}
-                                </option>
-                                <option value="_parent"{{ v.target == '_parent' ? ' selected="selected"' : '' }}>
-                                    _parent :: {{ t_target_parent|raw }}
-                                </option>
-                                <option value="_top"{{ v.target == '_top' ? ' selected="selected"' : '' }}>
-                                    _top :: {{ t_target_top|raw }}
-                                </option>
-                            </select>
-                        </p>
-
-                        <p class="rel">
-                            <label for="{{ idexp }}-rel">{{ t_relationship|raw }}</label>
-                            <input type="text" name="{{ idexp }}[rel]" id="{{ idexp }}-rel" value="{{ v.rel }}" />
-                            <small>{{ t_relationship_description|raw }}</small>
-                        </p>
-                    </div>
+                        't_website_url': t_website_url,
+                        't_website_placeholder': t_website_placeholder,
+                        't_website_goto': t_website_goto,
+                        't_label': t_label,
+                        't_label_placeholder': t_label_placeholder,
+                        't_target': t_target,
+                        't_target_blank': t_target_blank,
+                        't_target_self': t_target_self,
+                        't_target_parent': t_target_parent,
+                        't_target_top': t_target_top,
+                        't_relationship': t_relationship,
+                        't_relationship_description': t_relationship_description,
+                    } only %}
 
                     {% set num = num + 1 %}
                 {% endfor %}
-            </fieldset>
+            {% elseif not multiple %}
+                {% include '@link/expand.html.twig' with {
+                    'fieldname': name,
+                    'multiple': multiple,
 
-            <div class="hide-if-no-js">
-                <a href="#addLink" class="button add-link" title="{{ t_add_link }}">
-                    <i class="dashicons dashicons-plus"></i> {{ t_add_link }}
+                    'id': num,
+                    'url': '',
+                    'label': '',
+                    'target': '_blank',
+                    'rel': '',
+
+                    't_website_url': t_website_url,
+                    't_website_placeholder': t_website_placeholder,
+                    't_website_goto': t_website_goto,
+                    't_label': t_label,
+                    't_label_placeholder': t_label_placeholder,
+                    't_target': t_target,
+                    't_target_blank': t_target_blank,
+                    't_target_self': t_target_self,
+                    't_target_parent': t_target_parent,
+                    't_target_top': t_target_top,
+                    't_relationship': t_relationship,
+                    't_relationship_description': t_relationship_description,
+                } only %}
+            {% endif %}
+        </div>
+
+        {% if multiple %}
+            <div class="hide-if-no-js submitbox">
+                <a href="#addLink" class="button add-link" title="{{ t_add_link|raw }}">
+                    {{ t_add_link|raw }}
                 </a>
 
-                <a href="#deleteLinks" class="del-all-links">{{ t_delete_all|raw }}</a>
+                <a href="#deleteLinks" class="submitdelete deletion del-all-links">
+                    {{ t_delete_all|raw }}
+                </a>
             </div>
-        {% else %}
-            <fieldset>
-                <div class="link-container">
-                    <p class="block-link">
-                        <label for="{{ id }}-url">{{ t_website_address|raw }}</label>
-                        <input type="text" name="{{ name }}[url]" id="{{ id }}-url" value="{{ val.url }}" placeholder="{{ t_website_placeholder|raw }}" />
-
-                        <a href="{{ val.url }}" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank">
-                            <i class="dashicons dashicons-admin-links"></i>
-                        </a>
-                    </p>
-
-                    <p>
-                        <label for="{{ id }}-label">{{ t_label|raw }}</label>
-                        <input type="text" name="{{ name }}[label]" id="{{ id }}-label" value="{{ val.label }}" placeholder="{{ t_label_placeholder|raw }}" />
-                    </p>
-
-                    <p>
-                        <label for="{{ id }}-target">{{ t_website|raw }}</label>
-                        <select name="{{ name }}[target]" id="{{ id }}-target" class="no-selectize">
-                            <option value="_blank"{{ val.target == '_blank' ? ' selected="selected"' : '' }}>
-                                {{ t_target_blank|raw }}
-                            </option>
-                            <option value="_self"{{ val.target == '_self' ? ' selected="selected"' : '' }}>
-                                {{ t_target_self|raw }}
-                            </option>
-                            <option value="_parent"{{ val.target == '_parent' ? ' selected="selected"' : '' }}>
-                                {{ t_target_parent|raw }}
-                            </option>
-                            <option value="_top"{{ val.target == '_top' ? ' selected="selected"' : '' }}>
-                                {{ t_target_top|raw }}
-                            </option>
-                        </select>
-                    </p>
-
-                    <p class="rel">
-                        <label for="{{ id }}-rel">{{ t_relationship|raw }}</label>
-                        <input type="text" name="{{ name }}[rel]" id="{{ id }}-rel" value="{{ val.rel }}" />
-                        <small>{{ t_relationship_description|raw }}</small>
-                    </p>
-                </div>
-            </fieldset>
         {% endif %}
+
+        <script>
+            (function($) {
+                $(document).ready(function() {
+                    $("#{{ identifier }}-link").zeusLink({
+                        addbutton: ".add-link",
+                        container: ".l-results",
+                        delallbutton: ".del-all-links",
+                        delbutton: ".del-link",
+                        gotobutton: ".goto",
+                        items: "fieldset",
+                        linkbutton: ".l-link input",
+                        source: "{{ identifier }}-item",
+                    });
+                });
+            })(jQuery);
+        </script>
     </div>
 {% endblock %}
 
 {% block footer %}
-    {% if expandable %}
-        <script type="text/x-handlebars-template" id="i-links-{{ id }}">
-            {% include '@link/expand.html.twig' with {
-                't_website_address': t_website_address,
-                't_website_placeholder': t_website_placeholder,
-                't_goto': t_goto,
-                't_label': t_label,
-                't_label_placeholder': t_label_placeholder,
-                't_target': t_target,
-                't_target_blank': t_target_blank,
-                't_target_self': t_target_self,
-                't_target_parent': t_target_parent,
-                't_target_top': t_target_top,
-                't_relationship': t_relationship,
-                't_relationship_description': t_relationship_description,
-            } only %}
-        </script>
-    {% endif %}
+    <script type="text/html" id="tmpl-{{ identifier }}-item">
+        {% include '@link/expand.html.twig' with {
+            'fieldname': name,
+            'multiple': multiple,
+
+            't_website_url': t_website_url,
+            't_website_placeholder': t_website_placeholder,
+            't_website_goto': t_website_goto,
+            't_label': t_label,
+            't_label_placeholder': t_label_placeholder,
+            't_target': t_target,
+            't_target_blank': t_target_blank,
+            't_target_self': t_target_self,
+            't_target_parent': t_target_parent,
+            't_target_top': t_target_top,
+            't_relationship': t_relationship,
+            't_relationship_description': t_relationship_description,
+        } only %}
+    </script>
 {% endblock %}
 
 {% block description %}

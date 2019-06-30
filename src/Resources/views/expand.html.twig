@@ -1,45 +1,52 @@
-<div class="link-container{{ expandable ? ' movendrop' : '' }}">
-    {% if expandable %}
+{% set _id = id is defined ? id : '{{ data.id }}' %}
+{% set _url = url is defined ? url : '' %}
+{% set _label = label is defined ? label : '' %}
+{% set _target = target is defined ? target : '_blank' %}
+{% set _rel = rel is defined ? rel : '' %}
+
+<fieldset data-u="{{ _id }}">
+    {% if multiple %}
         <a href="#deleteLink" class="del-link">
             <i class="dashicons dashicons-no-alt"></i>
         </a>
     {% endif %}
 
-    <p class="block-link">
-        <label for="{% verbatim %}{{ lfor }}{% endverbatim %}-url">{{ t_website_address|raw }}</label>
-        <input type="text" name="{% verbatim %}{{ id }}{% endverbatim %}[{% verbatim %}{{ num }}{% endverbatim %}][url]" id="{% verbatim %}{{ lfor }}{% endverbatim %}-url" value="" placeholder="{{ t_website_placeholder|raw }}" />
+    <div class="l-link">
+        <label for="{{ fieldname }}-{{ _id }}-url">
+            {{ t_website_url|raw }} - <a href="{{ _url }}" class="goto" target="_blank">{{ t_website_goto|raw }}</a>
+        </label>
 
-        <a href="" class="olh-tooltip" title="{{ t_goto|raw }}" target="_blank">
-            <i class="dashicons dashicons-admin-links"></i>
-        </a>
-    </p>
+        <input type="text" name="{{ fieldname }}[{{ _id }}][url]" id="{{ fieldname }}-{{ _id }}-url" class="regular-text" value="{{ _url }}" placeholder="{{ t_website_placeholder|raw }}" />
+    </div>
 
-    <p>
-        <label for="{% verbatim %}{{ lfor }}{% endverbatim %}-label">{{ t_label|raw }}</label>
-        <input type="text" name="{% verbatim %}{{ id }}{% endverbatim %}[{% verbatim %}{{ num }}{% endverbatim %}][label]" id="{% verbatim %}{{ lfor }}{% endverbatim %}-label" value="" placeholder="{{ t_label_placeholder|raw }}" />
-    </p>
+    <div class="l-label">
+        <label for="{{ fieldname }}-{{ _id }}-label">{{ t_label|raw }}</label>
+        <input type="text" name="{{ fieldname }}[{{ _id }}][label]" id="{{ fieldname }}-{{ _id }}-label" class="regular-text" value="{{ _label }}" placeholder="{{ t_label_placeholder|raw }}" />
+    </div>
 
-    <p>
-        <label for="{% verbatim %}{{ lfor }}{% endverbatim %}-target">{{ t_target|raw }}</label>
-        <select name="{% verbatim %}{{ id }}{% endverbatim %}[{% verbatim %}{{ num }}{% endverbatim %}][target]" id="{% verbatim %}{{ lfor }}{% endverbatim %}-target" class="no-selectize">
-            <option value="_blank" selected="selected">
+    <div class="l-target">
+        <label for="{{ fieldname }}-{{ _id }}-target">{{ t_target|raw }}</label>
+
+        <select name="{{ fieldname }}[{{ _id }}][target]" id="{{ fieldname }}-{{ _id }}-target" class="no-selectize">
+            <option value="_blank"{{ _target == '_blank' ? ' selected="selected"' : '' }}>
                 {{ t_target_blank|raw }}
             </option>
-            <option value="_self">
+            <option value="_self"{{ _target == '_self' ? ' selected="selected"' : '' }}>
                 {{ t_target_self|raw }}
             </option>
-            <option value="_parent">
+            <option value="_parent"{{ _target == '_parent' ? ' selected="selected"' : '' }}>
                 {{ t_target_parent|raw }}
             </option>
-            <option value="_top">
+            <option value="_top"{{ _target == '_top' ? ' selected="selected"' : '' }}>
                 {{ t_target_top|raw }}
             </option>
         </select>
-    </p>
+    </div>
 
-    <p class="rel">
-        <label for="{% verbatim %}{{ lfor }}{% endverbatim %}-rel">{{ t_relationship|raw }}</label>
-        <input type="text" name="{% verbatim %}{{ id }}{% endverbatim %}[{% verbatim %}{{ num }}{% endverbatim %}][rel]" id="{% verbatim %}{{ lfor }}{% endverbatim %}-rel" value="" />
+    <div class="l-rel">
+        <label for="{{ fieldname }}-{{ _id }}-rel">{{ t_relationship|raw }}</label>
+
+        <input type="text" name="{{ fieldname }}[{{ _id }}][rel]" id="{{ fieldname }}-{{ _id }}-rel" class="regular-text" value="{{ _rel }}" />
         <small>{{ t_relationship_description|raw }}</small>
-    </p>
-</div>
+    </div>
+</fieldset>
