@@ -33,19 +33,25 @@
     "use strict";
 
     var Link = function ($el,options){
-        //vars
+        // vars
         var _this = this;
+
+        // this plugin works ONLY with WordPress wpTemplate
+        if (!wp || !wp.template) {
+            return;
+        }
+
         _this.$el = $el;
         _this.id = $el.attr('data-id');
         _this.options = options;
 
-        //update container
+        // update container
         _this.$container = _this.$el.find(_this.options.container);
 
-        //update number
+        // update number
         _this.num = _this.$container.find(_this.options.items).length;
 
-        //bind click event
+        // bind click event
         _this.$el.find(_this.options.linkbutton).on('keyup', $.proxy(_this.linketize, _this));
         _this.$el.find(_this.options.addbutton).on('click', $.proxy(_this.add_block, _this));
         _this.$el.find(_this.options.delbutton).on('click', $.proxy(_this.remove_block, _this));
@@ -62,10 +68,10 @@
         e.preventDefault();
         var _this = this;
 
-        //vars
+        // vars
         var $self = $(e.target || e.currentTarget);
 
-        //change href attribute
+        // change href attribute
         _this.$el.find(_this.options.gotobutton).attr('href', $self.val());
     };
 
@@ -73,22 +79,20 @@
         e.preventDefault();
         var _this = this;
 
-        //vars
+        // vars
         var $self = $(e.target || e.currentTarget);
 
-        //update number
+        // update number
         _this.num++;
 
-        //update modal content
+        // create content from template and append to container
         var _template = wp.template(_this.options.source),
             $html = $(_template({
                 id: _this.num
             }));
+            _this.$container.append($html);
 
-        //append all to target
-        _this.$container.append($html);
-
-        //bind events
+        // bind events
         var $link = _this.$container.find(_this.options.items).last();
         $link.find(_this.options.linkbutton).on('keyup', $.proxy(_this.linketize, _this));
         $link.find(_this.options.delbutton).on('click', $.proxy(_this.remove_block, _this));
@@ -98,7 +102,7 @@
         e.preventDefault();
         var _this = this;
 
-        //iterate on all
+        // iterate on all
         _this.$el.find(_this.options.delbutton).click();
     };
 
@@ -106,11 +110,11 @@
         e.preventDefault();
         var _this = this;
 
-        //vars
+        // vars
         var $self = $(e.target || e.currentTarget);
         var $parent = $self.closest(_this.options.items);
 
-        //deleting animation
+        // deleting animation
         $parent.css('background', _this.options.color);
         $parent.animate({
             opacity: '0'
