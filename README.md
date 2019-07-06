@@ -32,8 +32,8 @@ return \GetOlympus\Field\Link::build('my_link_field_id', [
     'multiple' => false,
 
     /**
-     * Texts definitions
-     * @see the `Texts definitions` section below
+     * Texts definition
+     * @see the `Texts definition` section below
      */
     't_add_link' => 'Add link',
     't_delete_all' => 'Delete all links',
@@ -52,7 +52,7 @@ return \GetOlympus\Field\Link::build('my_link_field_id', [
 ]);
 ```
 
-## Variables definitions
+## Variables definition
 
 | Variable      | Type    | Default value if not set | Accepted values |
 | ------------- | ------- | ------------------------ | --------------- |
@@ -63,9 +63,8 @@ return \GetOlympus\Field\Link::build('my_link_field_id', [
 
 Notes:
 * Set `multiple` to `true` to enable the "Add link" button
-* See below for all texts definitions
 
-## Texts definitions
+## Texts definition
 
 | Code | Default value | Definition |
 | ---- | ------------- | ---------- |
@@ -106,7 +105,7 @@ Below, a `json_encode()` example to understand how data are stored in Database:
 }
 ```
 
-Below, a simple example to show how to iterate on the data array in `PHP`:
+And below, a simple example to show how to iterate on the data array in `PHP`:
 
 ```php
 // Get links from Database
