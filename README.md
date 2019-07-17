@@ -23,8 +23,8 @@ Use the following lines to add a `link field` in your **WordPress** admin pages 
 
 ```php
 return \GetOlympus\Field\Link::build('my_link_field_id', [
-    'title' => 'Never gonna give you up!',
-    'default' => [
+    'title'       => 'Never gonna give you up!',
+    'default'     => [
         [
             'url'    => 'https://www.youtube.com/watch?v=oVTPg9iicy4',
             'label'  => 'Never gonna get you down!',
@@ -33,26 +33,26 @@ return \GetOlympus\Field\Link::build('my_link_field_id', [
         ],
     ],
     'description' => 'You\'ve been Rick rolled!',
-    'multiple' => false,
+    'multiple'    => false,
 
     /**
      * Texts definition
      * @see the `Texts definition` section below
      */
-    't_add_link' => 'Add link',
-    't_delete_all' => 'Delete all links',
-    't_label' => 'Label',
-    't_label_placeholder' => 'Put your link label here.',
-    't_relationship' => 'Relationship',
+    't_add_link'                 => 'Add link',
+    't_delete_all'               => 'Delete all links',
+    't_label'                    => 'Label',
+    't_label_placeholder'        => 'Put your link label here.',
+    't_relationship'             => 'Relationship',
     't_relationship_description' => 'You can set the <code>nofollow</code> value to avoid bots following the linked document.',
-    't_target' => 'Target',
-    't_target_blank' => 'New window or tab',
-    't_target_self' => 'Same frame as it was clicked',
-    't_target_parent' => 'Parent frame',
-    't_target_top' => 'Full body of the window',
-    't_website_placeholder' => 'https:// or http://',
-    't_website_goto' => 'Go to',
-    't_website_url' => 'Website url',
+    't_target'                   => 'Target',
+    't_target_blank'             => 'New window or tab',
+    't_target_self'              => 'Same frame as it was clicked',
+    't_target_parent'            => 'Parent frame',
+    't_target_top'               => 'Full body of the window',
+    't_website_placeholder'      => 'https:// or http://',
+    't_website_goto'             => 'Go to',
+    't_website_url'              => 'Website url',
 ]);
 ```
 
@@ -143,10 +143,6 @@ if (!empty($links)) {
 
 * 0.0.13
 - [x] FIX: add `wp-util` integration to make JS works fine
-
-* 0.0.12
-- [x] FIX: update JS file with wpTemplate integration
-- [x] ADD: new version compatible with Zeus-Core latest version
 
 ## Authors and Copyright
 
