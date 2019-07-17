@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://img.icons8.com/nolan/2x/external-link.png">
+</p>
+
 # Link Field
 > This component is a part of the [**Olympus Zeus Core**][zeus-url] **WordPress** framework.
 
@@ -10,7 +14,7 @@
 Using `composer` in your PHP project:
 
 ```sh
-composer install getolympus/olympus-link-field
+composer require getolympus/olympus-link-field
 ```
 
 ## Field initialization
@@ -131,6 +135,9 @@ if (!empty($links)) {
 
 ## Release History
 
+* 0.0.14
+- [x] FIX: remove twig dependency from composer
+
 * 0.0.13
 - [x] FIX: add `wp-util` integration to make JS works fine
 
@@ -146,8 +153,8 @@ Achraf Chouk
 Please, read [LICENSE][license-blob] for more information.  
 [![MIT][license-image]][license-url]
 
-[https://github.com/crewstyle](https://github.com/crewstyle)  
-[http://fr.linkedin.com/in/achrafchouk](http://fr.linkedin.com/in/achrafchouk)
+<https://github.com/crewstyle>  
+<https://fr.linkedin.com/in/achrafchouk>
 
 ## Contributing
 
