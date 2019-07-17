@@ -135,8 +135,11 @@ if (!empty($links)) {
 
 ## Release History
 
-* 0.0.14
+* 0.0.15
 - [x] FIX: remove twig dependency from composer
+
+* 0.0.14
+- [x] FIX: remove zeus-core dependency from composer
 
 * 0.0.13
 - [x] FIX: add `wp-util` integration to make JS works fine
