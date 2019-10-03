@@ -88,7 +88,7 @@ class Link extends Field
         $vars = $contents;
 
         // Retrieve field value
-        $vars['value'] = !is_array($value) ? [$value] : $value;
+        $vars['value'] = !is_array($value) ? [$value] : (isset($value['url']) ? [$value] : $value);
 
         // Update vars
         return $vars;
