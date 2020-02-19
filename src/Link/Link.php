@@ -2,13 +2,13 @@
 
 namespace GetOlympus\Field;
 
-use GetOlympus\Zeus\Field\Controller\Field;
-use GetOlympus\Zeus\Translate\Controller\Translate;
+use GetOlympus\Zeus\Field\Field;
+use GetOlympus\Zeus\Utils\Translate;
 
 /**
  * Builds Link field.
  *
- * @package Field
+ * @package DionysosField
  * @subpackage Link
  * @author Achraf Chouk <achrafchouk@gmail.com>
  * @since 0.0.1
@@ -47,7 +47,7 @@ class Link extends Field
      *
      * @return array
      */
-    protected function getDefaults()
+    protected function getDefaults() : array
     {
         return [
             'title' => Translate::t('link.title', $this->textdomain),
@@ -82,7 +82,7 @@ class Link extends Field
      *
      * @return array
      */
-    protected function getVars($value, $contents)
+    protected function getVars($value, $contents) : array
     {
         // Get contents
         $vars = $contents;
