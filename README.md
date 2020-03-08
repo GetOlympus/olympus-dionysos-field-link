@@ -131,15 +131,15 @@ if (!empty($links)) {
 
 ## Release History
 
-0.0.16
+0.0.17
 - New Olympus components compatibility
 - Change repository to be a part of Dionysos fields
 
+0.0.16
+- FIX: retrocompatibility value getter
+
 0.0.15
 - FIX: remove twig dependency from composer
-
-0.0.14
-- FIX: remove zeus-core dependency from composer
 
 ## Authors and Copyright
 
