@@ -1,14 +1,13 @@
 <?php
 
-namespace GetOlympus\Field;
+namespace GetOlympus\Dionysos\Field;
 
-use GetOlympus\Zeus\Field\Controller\Field;
-use GetOlympus\Zeus\Translate\Controller\Translate;
+use GetOlympus\Zeus\Field\Field;
 
 /**
  * Builds Link field.
  *
- * @package Field
+ * @package DionysosField
  * @subpackage Link
  * @author Achraf Chouk <achrafchouk@gmail.com>
  * @since 0.0.1
@@ -47,30 +46,30 @@ class Link extends Field
      *
      * @return array
      */
-    protected function getDefaults()
+    protected function getDefaults() : array
     {
         return [
-            'title' => Translate::t('link.title', $this->textdomain),
+            'title' => parent::t('link.title', $this->textdomain),
             'default' => [],
             'description' => '',
             'multiple' => false,
 
             // texts
-            't_add_link' => Translate::t('link.add_link', $this->textdomain),
-            't_delete_all' => Translate::t('link.delete_all', $this->textdomain),
-            't_label' => Translate::t('link.label.title', $this->textdomain),
-            't_label_placeholder' => Translate::t('link.label.placeholder', $this->textdomain),
-            't_relationship' => Translate::t('link.relationship.title', $this->textdomain),
-            't_relationship_description' => Translate::t('link.relationship.description', $this->textdomain),
-            't_target' => Translate::t('link.target.title', $this->textdomain),
-            't_target_blank' => Translate::t('link.target.blank', $this->textdomain),
-            't_target_self' => Translate::t('link.target.self', $this->textdomain),
-            't_target_parent' => Translate::t('link.target.parent', $this->textdomain),
-            't_target_top' => Translate::t('link.target.top', $this->textdomain),
-            't_website' => Translate::t('link.website.title', $this->textdomain),
-            't_website_placeholder' => Translate::t('link.website.placeholder', $this->textdomain),
-            't_website_goto' => Translate::t('link.website.goto', $this->textdomain),
-            't_website_url' => Translate::t('link.website.url', $this->textdomain),
+            't_add_link' => parent::t('link.add_link', $this->textdomain),
+            't_delete_all' => parent::t('link.delete_all', $this->textdomain),
+            't_label' => parent::t('link.label.title', $this->textdomain),
+            't_label_placeholder' => parent::t('link.label.placeholder', $this->textdomain),
+            't_relationship' => parent::t('link.relationship.title', $this->textdomain),
+            't_relationship_description' => parent::t('link.relationship.description', $this->textdomain),
+            't_target' => parent::t('link.target.title', $this->textdomain),
+            't_target_blank' => parent::t('link.target.blank', $this->textdomain),
+            't_target_self' => parent::t('link.target.self', $this->textdomain),
+            't_target_parent' => parent::t('link.target.parent', $this->textdomain),
+            't_target_top' => parent::t('link.target.top', $this->textdomain),
+            't_website' => parent::t('link.website.title', $this->textdomain),
+            't_website_placeholder' => parent::t('link.website.placeholder', $this->textdomain),
+            't_website_goto' => parent::t('link.website.goto', $this->textdomain),
+            't_website_url' => parent::t('link.website.url', $this->textdomain),
         ];
     }
 
@@ -82,7 +81,7 @@ class Link extends Field
      *
      * @return array
      */
-    protected function getVars($value, $contents)
+    protected function getVars($value, $contents) : array
     {
         // Get contents
         $vars = $contents;
