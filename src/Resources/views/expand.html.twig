@@ -2,51 +2,20 @@
 {% set _url = url is defined ? url : '' %}
 {% set _label = label is defined ? label : '' %}
 {% set _target = target is defined ? target : '_blank' %}
-{% set _rel = rel is defined ? rel : '' %}
 
-<fieldset data-u="{{ _id }}">
-    {% if multiple %}
-        <a href="#deleteLink" class="del-link">
-            <i class="dashicons dashicons-no-alt"></i>
-        </a>
-    {% endif %}
+<fieldset class="link-to-original link-block" data-u="{{ fieldname }}-{{ _id }}">
+    <input type="hidden" name="{{ fieldname }}[{{ _id }}][url]" id="{{ fieldname ~ '-' ~ _id }}-url" value="{{ _url }}" />
+    <input type="hidden" name="{{ fieldname }}[{{ _id }}][label]" id="{{ fieldname ~ '-' ~ _id }}-label" value="{{ _label|raw }}" />
+    <input type="hidden" name="{{ fieldname }}[{{ _id }}][target]" id="{{ fieldname ~ '-' ~ _id }}-target" value="{{ _target }}" />
 
-    <div class="l-link">
-        <label for="{{ fieldname }}-{{ _id }}-url">
-            {{ t_website_url|raw }} - <a href="{{ _url }}" class="goto" target="_blank">{{ t_website_goto|raw }}</a>
-        </label>
+    <span class="link-label">{{ _label ?: t_addblock_label }}</span>
+    <a href="{{ _url }}" class="link-url" target="_blank">{{ _url }}</a>
 
-        <input type="text" name="{{ fieldname }}[{{ _id }}][url]" id="{{ fieldname }}-{{ _id }}-url" class="regular-text" value="{{ _url }}" placeholder="{{ t_website_placeholder|raw }}" />
-    </div>
+    <button type="button" class="edit-button has-icon" aria-label="{{ t_editblock_label|raw }}">
+        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"></path></svg>
+    </button>
 
-    <div class="l-label">
-        <label for="{{ fieldname }}-{{ _id }}-label">{{ t_label|raw }}</label>
-        <input type="text" name="{{ fieldname }}[{{ _id }}][label]" id="{{ fieldname }}-{{ _id }}-label" class="regular-text" value="{{ _label }}" placeholder="{{ t_label_placeholder|raw }}" />
-    </div>
-
-    <div class="l-target">
-        <label for="{{ fieldname }}-{{ _id }}-target">{{ t_target|raw }}</label>
-
-        <select name="{{ fieldname }}[{{ _id }}][target]" id="{{ fieldname }}-{{ _id }}-target" class="no-selectize">
-            <option value="_blank"{{ _target == '_blank' ? ' selected="selected"' : '' }}>
-                {{ t_target_blank|raw }}
-            </option>
-            <option value="_self"{{ _target == '_self' ? ' selected="selected"' : '' }}>
-                {{ t_target_self|raw }}
-            </option>
-            <option value="_parent"{{ _target == '_parent' ? ' selected="selected"' : '' }}>
-                {{ t_target_parent|raw }}
-            </option>
-            <option value="_top"{{ _target == '_top' ? ' selected="selected"' : '' }}>
-                {{ t_target_top|raw }}
-            </option>
-        </select>
-    </div>
-
-    <div class="l-rel">
-        <label for="{{ fieldname }}-{{ _id }}-rel">{{ t_relationship|raw }}</label>
-
-        <input type="text" name="{{ fieldname }}[{{ _id }}][rel]" id="{{ fieldname }}-{{ _id }}-rel" class="regular-text" value="{{ _rel }}" />
-        <small>{{ t_relationship_description|raw }}</small>
-    </div>
+    <button type="button" class="remove-button has-icon" aria-label="{{ t_removeblock_label|raw }}">
+        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" role="img" aria-hidden="true" focusable="false"><path d="M12 4h3c.6 0 1 .4 1 1v1H3V5c0-.6.5-1 1-1h3c.2-1.1 1.3-2 2.5-2s2.3.9 2.5 2zM8 4h3c-.2-.6-.9-1-1.5-1S8.2 3.4 8 4zM4 7h11l-.9 10.1c0 .5-.5.9-1 .9H5.9c-.5 0-.9-.4-1-.9L4 7z"></path></svg>
+    </button>
 </fieldset>

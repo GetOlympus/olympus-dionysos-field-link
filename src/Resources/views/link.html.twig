@@ -4,10 +4,10 @@
 {% block label %}<label>{{ title|raw }}</label>{% endblock %}
 
 {% block field %}
-    <div id="{{ identifier }}-link" class="olz-field link">
+    <div id="{{ identifier }}-link" class="dionysos-field link">
         <input type="hidden" name="{{ name }}" value="" />
 
-        <div class="l-results">
+        <div class="links-elements">
             {% set num = 1 %}
 
             {% if value|length > 0 %}
@@ -20,74 +20,30 @@
                         'url': v.url,
                         'label': v.label,
                         'target': v.target,
-                        'rel': v.rel,
 
-                        't_website_url': t_website_url,
-                        't_website_placeholder': t_website_placeholder,
-                        't_website_goto': t_website_goto,
-                        't_label': t_label,
-                        't_label_placeholder': t_label_placeholder,
-                        't_target': t_target,
-                        't_target_blank': t_target_blank,
-                        't_target_self': t_target_self,
-                        't_target_parent': t_target_parent,
-                        't_target_top': t_target_top,
-                        't_relationship': t_relationship,
-                        't_relationship_description': t_relationship_description,
+                        't_addblock_label': t_addblock_title,
+                        't_editblock_label': t_editblock_label,
+                        't_removeblock_label': t_removeblock_label,
                     } only %}
 
                     {% set num = num + 1 %}
                 {% endfor %}
-            {% elseif not multiple %}
-                {% include '@link/expand.html.twig' with {
-                    'fieldname': name,
-                    'multiple': multiple,
-
-                    'id': num,
-                    'url': '',
-                    'label': '',
-                    'target': '_blank',
-                    'rel': '',
-
-                    't_website_url': t_website_url,
-                    't_website_placeholder': t_website_placeholder,
-                    't_website_goto': t_website_goto,
-                    't_label': t_label,
-                    't_label_placeholder': t_label_placeholder,
-                    't_target': t_target,
-                    't_target_blank': t_target_blank,
-                    't_target_self': t_target_self,
-                    't_target_parent': t_target_parent,
-                    't_target_top': t_target_top,
-                    't_relationship': t_relationship,
-                    't_relationship_description': t_relationship_description,
-                } only %}
             {% endif %}
         </div>
 
-        {% if multiple %}
-            <div class="hide-if-no-js submitbox">
-                <a href="#addLink" class="button add-link" title="{{ t_add_link|raw }}">
-                    {{ t_add_link|raw }}
-                </a>
+        <div class="hide-if-no-js submitbox">
+            {{ multiple ? t_addblocks_description : t_addblock_description }}
 
-                <a href="#deleteLinks" class="submitdelete deletion del-all-links">
-                    {{ t_delete_all|raw }}
-                </a>
-            </div>
-        {% endif %}
+            <button type="button" class="add-button has-icon" aria-label="{{ t_addblock_label|raw }}">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" role="img" aria-hidden="true" focusable="false"><path d="M10 1c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 16c-3.9 0-7-3.1-7-7s3.1-7 7-7 7 3.1 7 7-3.1 7-7 7zm1-11H9v3H6v2h3v3h2v-3h3V9h-3V6zM10 1c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9zm0 16c-3.9 0-7-3.1-7-7s3.1-7 7-7 7 3.1 7 7-3.1 7-7 7zm1-11H9v3H6v2h3v3h2v-3h3V9h-3V6z"></path></svg>
+            </button>
+        </div>
 
         <script>
             (function($) {
                 $(document).ready(function() {
-                    $("#{{ identifier }}-link").zeusLink({
-                        addbutton: ".add-link",
-                        container: ".l-results",
-                        delallbutton: ".del-all-links",
-                        delbutton: ".del-link",
-                        gotobutton: ".goto",
-                        items: "fieldset",
-                        linkbutton: ".l-link input",
+                    $("#{{ identifier }}-link").dionysosLink({
+                        multiple: {{ multiple ? 'true' : 'false' }},
                         source: "{{ identifier }}-item",
                     });
                 });
@@ -102,18 +58,9 @@
             'fieldname': name,
             'multiple': multiple,
 
-            't_website_url': t_website_url,
-            't_website_placeholder': t_website_placeholder,
-            't_website_goto': t_website_goto,
-            't_label': t_label,
-            't_label_placeholder': t_label_placeholder,
-            't_target': t_target,
-            't_target_blank': t_target_blank,
-            't_target_self': t_target_self,
-            't_target_parent': t_target_parent,
-            't_target_top': t_target_top,
-            't_relationship': t_relationship,
-            't_relationship_description': t_relationship_description,
+            't_addblock_label': t_addblock_title,
+            't_editblock_label': t_editblock_label,
+            't_removeblock_label': t_removeblock_label,
         } only %}
     </script>
 {% endblock %}
