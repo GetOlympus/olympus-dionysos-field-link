@@ -188,8 +188,6 @@
 
         // hook HTML update after modal validation
         wpLink.htmlUpdate = function (){
-            var attrs = wpLink.getAttrs();
-
             _this.update_inputs(
                 $parent,
                 $('#wp-link-url').val(),
