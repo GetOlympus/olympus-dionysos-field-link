@@ -1,22 +1,11 @@
 {
     "link.title": "Hypertext link",
-    "link.add_link": "Add link",
-    "link.delete_all": "Delete all links",
 
-    "link.label.title": "Label",
-    "link.label.placeholder": "Put your link label here.",
+    "link.addblock_title": "Click on the edit button",
+    "link.addblock_description": "Click on the \"+\" button to add your link.",
+    "link.addblocks_description": "Click on the \"+\" button to add a link item.",
 
-    "link.relationship.title": "Relationship",
-    "link.relationship.description": "You can set the <code>nofollow</code> value to avoid bots following the linked document.",
-
-    "link.target.title": "Target",
-    "link.target.blank": "New window or tab",
-    "link.target.self": "Same frame as it was clicked",
-    "link.target.parent": "Parent frame",
-    "link.target.top": "Full body of the window",
-
-    "link.website.title": "Title",
-    "link.website.placeholder": "https:// or http://",
-    "link.website.goto": "Go to",
-    "link.website.url": "Website url"
+    "link.addblock_label": "Add",
+    "link.editblock_label": "Edit",
+    "link.removeblock_label": "Remove"
 }

@@ -1,17 +1,24 @@
 # Dionysos Link Field
 > This component is a part of the **Olympus Dionysos fields** for **WordPress**.
 
-[![Olympus Component][olympus-image]][olympus-url]
-[![CodeFactor Grade][codefactor-image]][codefactor-url]
-[![Packagist Version][packagist-image]][packagist-url]
-
 ```sh
 composer require getolympus/olympus-dionysos-field-link
 ```
 
+---
+
+[![Olympus Component][olympus-image]][olympus-url]
+[![CodeFactor Grade][codefactor-image]][codefactor-url]
+[![Packagist Version][packagist-image]][packagist-url]
+[![MIT][license-image]][license-blob]
+
+---
+
 <p align="center">
     <img src="https://github.com/GetOlympus/olympus-dionysos-field-link/blob/master/assets/field-link-64.png" />
 </p>
+
+---
 
 ## Field initialization
 
@@ -25,7 +32,6 @@ return \GetOlympus\Dionysos\Field\Link::build('my_link_field_id', [
             'url'    => 'https://www.youtube.com/watch?v=oVTPg9iicy4',
             'label'  => 'Never gonna get you down!',
             'target' => '_blank',
-            'rel'    => 'nofollow',
         ],
     ],
     'description' => 'You\'ve been Rick rolled!',
@@ -35,20 +41,12 @@ return \GetOlympus\Dionysos\Field\Link::build('my_link_field_id', [
      * Texts definition
      * @see the `Texts definition` section below
      */
-    't_add_link'                 => 'Add link',
-    't_delete_all'               => 'Delete all links',
-    't_label'                    => 'Label',
-    't_label_placeholder'        => 'Put your link label here.',
-    't_relationship'             => 'Relationship',
-    't_relationship_description' => 'You can set the <code>nofollow</code> value to avoid bots following the linked document.',
-    't_target'                   => 'Target',
-    't_target_blank'             => 'New window or tab',
-    't_target_self'              => 'Same frame as it was clicked',
-    't_target_parent'            => 'Parent frame',
-    't_target_top'               => 'Full body of the window',
-    't_website_placeholder'      => 'https:// or http://',
-    't_website_goto'             => 'Go to',
-    't_website_url'              => 'Website url',
+    't_addblock_title'        => 'Click on the edit button',
+    't_addblock_description'  => 'Click on the "+" button to add your link.',
+    't_addblocks_description' => 'Click on the "+" button to add a link item.',
+    't_addblock_label'        => 'Add',
+    't_editblock_label'       => 'Edit',
+    't_removeblock_label'     => 'Remove',
 ]);
 ```
 
@@ -68,20 +66,12 @@ Notes:
 
 | Code | Default value | Definition |
 | ---- | ------------- | ---------- |
-| `t_add_link` | Add link | Used as a add link label button |
-| `t_delete_all` | Delete all links | Used as a delete all links label button |
-| `t_label` | Label | Used as a link label title field |
-| `t_label_placeholder` | Put your link label here. | Used as a link placeholder title field |
-| `t_relationship` | Relationship | Used as a link relationship title field |
-| `t_relationship_description` | You can set the `nofollow` value<br/>to avoid bots following the linked<br/>document. | Used as a link relationship description field |
-| `t_target` | Target | Used as a link target title field |
-| `t_target_blank` | New window or tab | `_blank` target field description |
-| `t_target_self` | Same frame as it was clicked | `_self` target field description |
-| `t_target_parent` | Parent frame | `_parent` target field description |
-| `t_target_top` | Full body of the window | `_top` target field description |
-| `t_website_placeholder` | https:// or http:// | Used as a link website placeholder field |
-| `t_website_goto` | Go to | Used as a link website go to label |
-| `t_website_url` | Website url | Used as a link website label field |
+| `t_addblock_title` | Click on the edit button | Message displayed on an item without link |
+| `t_addblock_description` | Click on the "+" button to add your link. | Main helper to add a single item box |
+| `t_addblocks_description` | Click on the "+" button to add a link item. | Main helper to add multiple items boxes |
+| `t_addblock_label` | Add | Used as an Add button area title |
+| `t_editblock_label` | Edit | Used as an Edit button area title |
+| `t_removeblock_label` | Remove | Used as a Remove button area title |
 
 ## Retrive data
 
@@ -93,14 +83,12 @@ Below, a `json_encode()` example to understand how data are stored in Database:
   "1": {
     "url": "https://www.google.com",
     "label": "Google.com",
-    "target": "_parent",
-    "rel": "dofollow"
+    "target": "_parent"
   },
   "2": {
     "url": "https://www.yahoo.com",
     "label": "Yahoo.com",
-    "target": "_blank",
-    "rel": "nofollow"
+    "target": "_blank"
   }
 }
 ```
@@ -120,7 +108,7 @@ if (!empty($links)) {
         // Build HTML items
         echo '<li>';
         echo '<a href="'.$link['url'].'" target="'.$link['target'].'" title="'.esc_html($link['label']).'">';
-        echo $link['target'];
+        echo $link['label'];
         echo '</a>';
         echo '</li>';
     }
@@ -131,26 +119,15 @@ if (!empty($links)) {
 
 ## Release History
 
+0.0.18
+- New fresh design with WordPress `wpLink` integration
+
 0.0.17
 - New Olympus components compatibility
 - Change repository to be a part of Dionysos fields
 
 0.0.16
 - FIX: retrocompatibility value getter
-
-0.0.15
-- FIX: remove twig dependency from composer
-
-## Authors and Copyright
-
-Achraf Chouk  
-[![@crewstyle][twitter-image]][twitter-url]
-
-Please, read [LICENSE][license-blob] for more information.  
-[![MIT][license-image]][license-url]
-
-<https://github.com/crewstyle>  
-<https://fr.linkedin.com/in/achrafchouk>
 
 ## Contributing
 
@@ -172,8 +149,5 @@ Please, read [LICENSE][license-blob] for more information.
 [getoption-url]: https://developer.wordpress.org/reference/functions/get_option/
 [license-blob]: https://github.com/GetOlympus/olympus-dionysos-field-link/blob/master/LICENSE
 [license-image]: https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat-square
-[license-url]: http://opensource.org/licenses/MIT
 [packagist-image]: https://img.shields.io/packagist/v/getolympus/olympus-dionysos-field-link.svg?style=flat-square
 [packagist-url]: https://packagist.org/packages/getolympus/olympus-dionysos-field-link
-[twitter-image]: https://img.shields.io/badge/crewstyle-blue.svg?style=social&logo=twitter
-[twitter-url]: https://twitter.com/crewstyle

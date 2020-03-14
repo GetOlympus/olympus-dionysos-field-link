@@ -19,7 +19,8 @@ class Link extends Field
     /**
      * @var array
      */
-    protected $adminscripts = ['wp-util'];
+    //protected $adminscripts = ['wp-util', 'wplink'];
+    protected $adminscripts = ['wplink'];
 
     /**
      * @var string
@@ -55,21 +56,12 @@ class Link extends Field
             'multiple' => false,
 
             // texts
-            't_add_link' => parent::t('link.add_link', $this->textdomain),
-            't_delete_all' => parent::t('link.delete_all', $this->textdomain),
-            't_label' => parent::t('link.label.title', $this->textdomain),
-            't_label_placeholder' => parent::t('link.label.placeholder', $this->textdomain),
-            't_relationship' => parent::t('link.relationship.title', $this->textdomain),
-            't_relationship_description' => parent::t('link.relationship.description', $this->textdomain),
-            't_target' => parent::t('link.target.title', $this->textdomain),
-            't_target_blank' => parent::t('link.target.blank', $this->textdomain),
-            't_target_self' => parent::t('link.target.self', $this->textdomain),
-            't_target_parent' => parent::t('link.target.parent', $this->textdomain),
-            't_target_top' => parent::t('link.target.top', $this->textdomain),
-            't_website' => parent::t('link.website.title', $this->textdomain),
-            't_website_placeholder' => parent::t('link.website.placeholder', $this->textdomain),
-            't_website_goto' => parent::t('link.website.goto', $this->textdomain),
-            't_website_url' => parent::t('link.website.url', $this->textdomain),
+            't_addblock_title' => parent::t('link.addblock_title', $this->textdomain),
+            't_addblock_description' => parent::t('link.addblock_description', $this->textdomain),
+            't_addblocks_description' => parent::t('link.addblocks_description', $this->textdomain),
+            't_addblock_label' => parent::t('link.addblock_label', $this->textdomain),
+            't_editblock_label' => parent::t('link.editblock_label', $this->textdomain),
+            't_removeblock_label' => parent::t('link.removeblock_label', $this->textdomain),
         ];
     }
 

@@ -5,64 +5,41 @@
  * Achraf Chouk (https://github.com/crewstyle)
  */
 
-@black: #000000;
-@gray: #999999;
-@white: #ffffff;
-
-.olz-field.link {
-    .l-results {
-        font-size: 0;
-    }
-
+.dionysos-field.link {
     fieldset {
-        background-color: @white;
-        box-shadow: 0 2px 2px 0 fade(@black, 30%);
         box-sizing: border-box;
         display: inline-block;
-        font-size: 12px;
-        margin: 0 .5% 10px;
-        min-width: 450px;
+        min-width: 51%;
         padding: 10px;
-        position: relative;
-        vertical-align: top;
-        width: 49%;
     }
 
-    label {
-        display: inline-block;
-        font-size: 12px;
-        line-height: 12px;
-        width: 80px;
+    .submitbox {
+        margin-bottom: 15px;
     }
 
-    select,
-    input {
-        line-height: 18px;
-    }
+    .add-button, .edit-button, .remove-button {
+        border-radius: 50%;
+        border: 0;
+        color: rgba(10, 24, 41, 0.7);
+        cursor: pointer;
+        display: inline-flex;
+        height: 28px;
+        padding: 0;
+        vertical-align: middle;
+        width: 28px;
 
-    small {
-        display: block;
-        font-style: italic;
+        -webkit-appearance: none;
 
-        code {
-            font-size: inherit;
+        svg {
+            fill: currentColor;
+            margin: 0 auto;
+            outline: none;
         }
-    }
 
-    a.del-link {
-        background-color: @white;
-        color: @black;
-        display: block;
-        font-size: 16px;
-        font-weight: 700;
-        height: 30px;
-        line-height: 30px;
-        padding: 4px 8px;
-        position: absolute;
-        right: 0;
-        text-align: center;
-        text-decoration: none;
-        top: 0;
-        z-index: 4;
+        &:hover, &:focus {
+            background-color: #fff;
+            box-shadow: inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff;
+            color: #191e23;
+        }
     }
 }
