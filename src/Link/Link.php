@@ -19,7 +19,6 @@ class Link extends Field
     /**
      * @var array
      */
-    //protected $adminscripts = ['wp-util', 'wplink'];
     protected $adminscripts = ['wplink'];
 
     /**

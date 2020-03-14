@@ -305,4 +305,4 @@
             return false;
         }
     };
-})(window.jQuery, wp, wpLink);
+})(window.jQuery, window.wp, window.wpLink);

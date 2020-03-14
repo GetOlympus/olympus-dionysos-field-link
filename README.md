@@ -83,7 +83,7 @@ Below, a `json_encode()` example to understand how data are stored in Database:
   "1": {
     "url": "https://www.google.com",
     "label": "Google.com",
-    "target": "_parent"
+    "target": "_self"
   },
   "2": {
     "url": "https://www.yahoo.com",
