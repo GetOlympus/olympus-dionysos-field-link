@@ -57,7 +57,7 @@
  * Achraf Chouk (https://github.com/crewstyle)
  */
 
-(function ($){
+(function ($, wp, wpLink){
     "use strict";
 
     /**
@@ -141,8 +141,6 @@
         var _this = this;
 
         // vars
-        var $self = $(e.target || e.currentTarget);
-
         _this.length++;
 
         // create content from template and append to container
@@ -292,9 +290,7 @@
 
                 new Link($(this), settings);
             });
-        },
-        update: function (){},
-        destroy: function (){}
+        }
     };
 
     $.fn.dionysosLink = function (method){
@@ -309,4 +305,4 @@
             return false;
         }
     };
-})(window.jQuery);
+})(window.jQuery, wp, wpLink);
