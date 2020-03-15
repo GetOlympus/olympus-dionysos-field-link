@@ -1,5 +1,6 @@
 # Dionysos Link Field
 > This component is a part of the **Olympus Dionysos fields** for **WordPress**.
+> It uses the default `wpLink` WordPress javascript bundle to manage field.
 
 ```sh
 composer require getolympus/olympus-dionysos-field-link
