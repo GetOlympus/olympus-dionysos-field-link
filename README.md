@@ -119,15 +119,14 @@ if (!empty($links)) {
 
 ## Release History
 
+0.0.20
+- Fix display with new remove icon
+
 0.0.19
 - Display now compatible with new Zeus-Core version
 
 0.0.18
 - New fresh design with WordPress `wpLink` integration
-
-0.0.17
-- New Olympus components compatibility
-- Change repository to be a part of Dionysos fields
 
 ## Contributing
 
