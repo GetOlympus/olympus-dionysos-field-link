@@ -1,8 +1,8 @@
 /*!
- * link.js v2.0.0
- * https://github.com/GetOlympus/olympus-link-field
+ * link.js v3.0.0
+ * https://github.com/GetOlympus/olympus-dionysos-field-link
  *
- * This plugin change dynamically the href attribute for the link URL.
+ * This plugin adds a Link block thanks to the wpLink WordPress JS bundle.
  *
  * Example of JS:
  *      $('.links').dionysosLink({
