@@ -3,4 +3,4 @@
  *
  * Copyright 2016 Achraf Chouk
  * Achraf Chouk (https://github.com/crewstyle)
- */.dionysos-field.link fieldset{box-sizing:border-box;display:inline-block;min-width:51%;padding:10px}.dionysos-field.link .submitbox{margin-bottom:15px}
+ */.dionysos-field.link .link-to-original{box-sizing:border-box;display:inline-block;min-width:51%;padding:10px}.dionysos-field.link .link-to-original .link-url{padding:0 10px}.dionysos-field.link .submitbox{margin-bottom:15px}
