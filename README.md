@@ -120,6 +120,9 @@ if (!empty($links)) {
 
 ## Release History
 
+0.0.21
+- JS compatibility
+
 0.0.20
 - Fix display with new remove icon
 

@@ -7,7 +7,7 @@
  * Example of JS:
  *      $('.links').dionysosLink({
  *          color: '#ffaaaa',               // background color used when deleting a social network
- *          elements: '.links-elements',    // node elements
+ *          elements: '.listbox',           // node elements
  *          item: 'fieldset',               // child node item
  *          multiple: false,                // define to display multiple elements or not
  *          addbutton: '.add-button',       // node element which is used to add a new item
@@ -20,7 +20,9 @@
  *
  * Example of HTML:
  *      <div class="links">
- *          <div class="links-elements">
+ *          <input type="hidden" name="ctm" value="" />
+ *
+ *          <div class="listbox">
  *              <fieldset data-u="ctm-1">
  *                  <input type="hidden" name="ctm[1][url]" value="https://www.domain.ext" id="ctm-1-url" />
  *                  <input type="hidden" name="ctm[1][label]" value="My title link" id="ctm-1-label" />
@@ -69,7 +71,7 @@
         // vars
         var _this = this;
 
-        // this plugin works ONLY with WordPress wpTemplate and wpLink function
+        // this plugin works ONLY with WordPress wpTemplate and wpLink functions
         if (!wp || !wp.template || !wpLink) {
             return;
         }
@@ -97,37 +99,31 @@
     };
 
     /**
-     * Add block button
      * @type {nodeElement}
      */
     Link.prototype.$addbutton = null;
 
     /**
-     * Main element
      * @type {nodeElement}
      */
     Link.prototype.$el = null;
 
     /**
-     * List items
      * @type {array}
      */
     Link.prototype.$elements = null;
 
     /**
-     * Elements item length
      * @type {int}
      */
     Link.prototype.length = 0;
 
     /**
-     * Main options array
      * @type {array}
      */
     Link.prototype.options = null;
 
     /**
-     * Submit box element
      * @type {nodeElement}
      */
     Link.prototype.$submitbox = null;
@@ -224,15 +220,16 @@
      * Displays or hides interactive buttons
      */
     Link.prototype.update_buttons = function (){
-        var _this = this;
+        var _this = this,
+            _count = _this.$elements.find(_this.options.item).length;
 
         // single case
-        if (1 <= _this.length && !_this.options.multiple) {
+        if (1 <= _count && !_this.options.multiple) {
             _this.$submitbox.hide();
         }
 
         // other cases
-        if (!_this.length || _this.options.multiple) {
+        if (!_count || _this.options.multiple) {
             _this.$submitbox.show();
         }
     };
@@ -269,7 +266,7 @@
             var settings = {
                 // configurations
                 color: '#ffaaaa',
-                elements: '.links-elements',
+                elements: '.listbox',
                 item: 'fieldset',
                 multiple: false,
                 // buttons
