@@ -1,4 +1,12 @@
+<img src="https://github.com/GetOlympus/olympus-dionysos-field-link/blob/master/assets/field-link.png" align="left" />
+
 # Dionysos Link Field
+
+[![Olympus Component][olympus-image]][olympus-url]
+[![CodeFactor Grade][codefactor-image]][codefactor-url]
+[![Packagist Version][packagist-image]][packagist-url]
+[![MIT][license-image]][license-blob]
+
 > This component is a part of the **Olympus Dionysos fields** for **WordPress**.
 > It uses the default `wpLink` WordPress javascript bundle to manage field.
 
@@ -8,16 +16,9 @@ composer require getolympus/olympus-dionysos-field-link
 
 ---
 
-[![Olympus Component][olympus-image]][olympus-url]
-[![CodeFactor Grade][codefactor-image]][codefactor-url]
-[![Packagist Version][packagist-image]][packagist-url]
-[![MIT][license-image]][license-blob]
+## Table of contents
 
----
-
-<p align="center">
-    <img src="https://github.com/GetOlympus/olympus-dionysos-field-link/blob/master/assets/field-link-64.png" />
-</p>
+[Field initialization](#field-initialization) • [Variables definitions](#variables-definitions) • [Texts definition](#texts-definition) • [Retrive data](#retrive-data) • [Release history](#release-history) • [Contributing](#contributing)
 
 ---
 
@@ -54,7 +55,7 @@ return \GetOlympus\Dionysos\Field\Link::build('my_link_field_id', [
 ## Variables definition
 
 | Variable      | Type    | Default value if not set | Accepted values |
-| ------------- | ------- | ------------------------ | --------------- |
+| :------------ | :------ | :----------------------- | :-------------- |
 | `title`       | String  | `'Hypertext link'` | *empty* |
 | `default`     | Array   | *empty* | *empty* |
 | `description` | String  | *empty* | *empty* |
@@ -66,7 +67,7 @@ Notes:
 ## Texts definition
 
 | Code | Default value | Definition |
-| ---- | ------------- | ---------- |
+| :--- | :------------ | :--------- |
 | `t_addblock_title` | Click on the edit button | Message displayed on an item without link |
 | `t_addblock_description` | Click on the "+" button to add your link. | Main helper to add a single item box |
 | `t_addblocks_description` | Click on the "+" button to add a link item. | Main helper to add multiple items boxes |
@@ -118,19 +119,13 @@ if (!empty($links)) {
 }
 ```
 
-## Release History
+## Release history
 
-0.0.21
-- JS compatibility
-
-0.0.20
-- Fix display with new remove icon
-
-0.0.19
-- Display now compatible with new Zeus-Core version
-
-0.0.18
-- New fresh design with WordPress `wpLink` integration
+| Version | Note |
+| :------ | :--- |
+| 0.0.22  | Add editor's button stylesheet and wp-util javascript<br/>Update README |
+| 0.0.21  | JS compatibility |
+| 0.0.20  | Fix display with new remove icon |
 
 ## Contributing
 
