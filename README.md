@@ -18,7 +18,7 @@ composer require getolympus/olympus-dionysos-field-link
 
 ## Table of contents
 
-[Field initialization](#field-initialization) • [Variables definitions](#variables-definitions) • [Texts definition](#texts-definition) • [Retrive data](#retrive-data) • [Release history](#release-history) • [Contributing](#contributing)
+[Field initialization](#field-initialization) • [Variables definition](#variables-definition) • [Texts definition](#texts-definition) • [Retrive data](#retrive-data) • [Release History](#release-history) • [Contributing](#contributing)
 
 ---
 
